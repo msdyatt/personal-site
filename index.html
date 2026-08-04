@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sam Dyatt — Systems &amp; Curriculum</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500&family=Press+Start+2P&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#D6C6A1;
+    --bg-2:#CBB98F;
+    --text:#3A3226;
+    --muted:#8A7C63;
+    --card-bg:#FDF8EE;
+    --card-border:#00000022;
+    --mustard:#D98A3D;
+    --mustard-dim:#A66A2C;
+    --teal:#4F8A8B;
+    --teal-dim:#3A6667;
+    --screen-bg:#12241C;
+    --screen-text:#6FFFC0;
+    --bezel:#4A3F2E;
+    --font-display:'Fredoka',sans-serif;
+    --font-body:'Fraunces',serif;
+    --font-mono:'IBM Plex Mono',monospace;
+    --font-pixel:'Press Start 2P',monospace;
+    --maxw:1080px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font-display);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  ::selection{background:var(--mustard);color:#2B2417;}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--teal);outline-offset:3px;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+  @keyframes blink{50%{opacity:0;}}
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    background:#D6C6A1E6;backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--card-border);
+  }
+  .nav-inner{max-width:var(--maxw);margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;}
+  .brand{font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:0.02em;text-decoration:none;color:var(--text);}
+  .brand span{color:var(--mustard);}
+  nav.links{display:flex;gap:26px;}
+  nav.links a{font-family:var(--font-mono);font-size:11.5px;letter-spacing:0.08em;text-decoration:none;color:var(--muted);text-transform:uppercase;transition:color .2s ease;}
+  nav.links a:hover{color:var(--text);}
+  .nav-toggle{display:none;background:none;border:none;color:var(--text);font-size:22px;cursor:pointer;}
+
+  @media (max-width:720px){
+    nav.links{position:absolute;top:100%;left:0;right:0;background:var(--bg);flex-direction:column;gap:0;border-bottom:1px solid var(--card-border);max-height:0;overflow:hidden;transition:max-height .3s ease;}
+    nav.links.open{max-height:320px;}
+    nav.links a{padding:14px 28px;border-top:1px solid var(--card-border);}
+    .nav-toggle{display:block;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{padding:160px 0 88px;position:relative;}
+  .device-chip{
+    font-family:var(--font-pixel);font-size:8.5px;line-height:1.8;color:var(--screen-text);
+    background:var(--screen-bg);border:3px solid var(--bezel);border-radius:8px;
+    display:inline-flex;align-items:center;gap:9px;padding:8px 14px;
+    box-shadow:inset 0 0 10px #00000077, 0 4px 0 var(--bezel);
+  }
+  .device-chip .dot{width:6px;height:6px;border-radius:50%;background:var(--screen-text);box-shadow:0 0 6px var(--screen-text);animation:blink 1.6s steps(2) infinite;flex:0 0 auto;}
+  .eyebrow{margin:0 0 22px;}
+
+  h1.hero-line{
+    font-family:var(--font-display);font-weight:700;
+    font-size:clamp(34px,5.8vw,58px);line-height:1.12;letter-spacing:-0.01em;
+    margin:0 0 26px;max-width:740px;
+  }
+  h1.hero-line span{display:block;}
+  h1.hero-line .accent{color:var(--mustard);}
+  .blink-cursor{display:inline-block;color:var(--screen-text);animation:blink 1s steps(2) infinite;margin-left:6px;}
+
+  .hero-sub{
+    font-family:var(--font-body);font-style:italic;font-weight:500;
+    font-size:clamp(17px,2.2vw,20px);color:var(--muted);max-width:540px;line-height:1.6;margin:0 0 36px;
+  }
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:28px;}
+  .btn{
+    font-family:var(--font-mono);font-size:13px;padding:12px 22px;text-decoration:none;
+    border-radius:24px;display:inline-block;transition:transform .15s ease;
+  }
+  .btn-primary{background:var(--mustard);color:#2B2417;font-weight:600;box-shadow:3px 3px 0 var(--bezel);}
+  .btn-primary:hover{transform:translateY(-2px);}
+  .btn-ghost{border:2px solid var(--card-border);color:var(--text);}
+  .btn-ghost:hover{border-color:var(--teal);color:var(--teal-dim);}
+
+  /* ---------- TRACK / SPINE SECTIONS ---------- */
+  .track-section{display:grid;grid-template-columns:60px 1fr;max-width:var(--maxw);margin:0 auto;}
+  .spine-col{border-left:3px dashed var(--mustard-dim);position:relative;}
+  .spine-col.teal-line{border-left-color:var(--teal-dim);}
+  .node{
+    position:absolute;top:6px;left:-15px;font-family:var(--font-pixel);font-size:7px;
+    background:var(--screen-bg);color:var(--screen-text);border:2px solid var(--bezel);
+    padding:5px 7px;border-radius:5px;white-space:nowrap;
+  }
+  .content-col{padding:60px 28px 60px 34px;}
+  @media (max-width:720px){
+    .track-section{grid-template-columns:34px 1fr;}
+    .content-col{padding:40px 16px 40px 20px;}
+    .node{font-size:6px;left:-12px;padding:4px 5px;}
+  }
+
+  .section-title{font-family:var(--font-display);font-weight:700;font-size:clamp(24px,3.4vw,34px);margin:0 0 32px;}
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;} .blink-cursor,.device-chip .dot{animation:none;}}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:44px;}
+  @media (max-width:820px){.about-grid{grid-template-columns:1fr;}}
+  .changelog{list-style:none;margin:0;padding:0;font-family:var(--font-mono);font-size:13.5px;}
+  .changelog li{padding:13px 0;border-top:1px solid var(--card-border);display:flex;gap:16px;color:var(--muted);}
+  .changelog li:last-child{border-bottom:1px solid var(--card-border);}
+  .changelog .yr{color:var(--mustard-dim);flex:0 0 46px;font-weight:600;}
+  .changelog .role{color:var(--text);}
+  .changelog .org{display:block;color:var(--muted);font-size:12px;margin-top:2px;}
+  .about-copy{font-family:var(--font-body);font-size:18px;line-height:1.8;color:var(--text);}
+  .about-copy p{margin:0 0 18px;}
+
+  /* ---------- SYSTEMS (pinned cards) ---------- */
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:26px;margin-bottom:34px;padding-top:10px;}
+  .card{
+    background:var(--card-bg);border:1px solid var(--card-border);border-radius:4px;
+    padding:24px;position:relative;box-shadow:0 8px 16px rgba(0,0,0,.16);
+    transform:rotate(-1.1deg);
+  }
+  .card:nth-child(2){transform:rotate(1.3deg);}
+  .card:nth-child(3){transform:rotate(-0.5deg);}
+  .card::before{content:"📌";position:absolute;top:-15px;left:50%;transform:translateX(-50%);font-size:19px;}
+  .card .tag{
+    font-family:var(--font-pixel);font-size:7px;color:var(--screen-text);background:var(--screen-bg);
+    display:inline-flex;align-items:center;gap:6px;padding:5px 9px;border-radius:4px;margin-bottom:12px;
+  }
+  .card .tag img{width:13px;height:13px;border-radius:3px;}
+  .card h3{font-family:var(--font-display);font-size:17px;margin:0 0 9px;font-weight:600;}
+  .card p{font-family:var(--font-body);font-size:14.5px;color:var(--muted);line-height:1.65;margin:0;}
+
+  .next-up{
+    border:2px dashed var(--mustard-dim);border-radius:8px;padding:20px 24px;
+    font-family:var(--font-mono);font-size:13px;color:var(--muted);line-height:1.7;background:#00000008;
+  }
+  .next-up strong{color:var(--mustard-dim);font-weight:600;}
+
+  /* ---------- TEACHING ---------- */
+  .teaching-wrap{background:var(--bg-2);}
+  .teaching-intro{font-family:var(--font-body);font-size:18.5px;line-height:1.8;max-width:640px;margin:0 0 38px;color:var(--text);}
+  .teach-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px;padding-top:8px;}
+  .teach-item{
+    background:var(--card-bg);border:1px solid var(--card-border);border-radius:4px;
+    padding:20px;position:relative;box-shadow:0 6px 14px rgba(0,0,0,.14);transform:rotate(0.8deg);
+  }
+  .teach-item:nth-child(2){transform:rotate(-1deg);}
+  .teach-item:nth-child(3){transform:rotate(1.2deg);}
+  .teach-item:nth-child(4){transform:rotate(-0.6deg);}
+  .teach-item::before{content:"📌";position:absolute;top:-13px;left:50%;transform:translateX(-50%);font-size:16px;}
+  .teach-item .k{
+    font-family:var(--font-pixel);font-size:7px;color:var(--screen-text);background:var(--screen-bg);
+    display:inline-block;padding:5px 8px;border-radius:4px;margin-bottom:10px;
+  }
+  .teach-item h4{font-family:var(--font-display);font-weight:600;font-size:15.5px;margin:0 0 8px;color:var(--text);}
+  .teach-item p{font-family:var(--font-body);font-size:13.5px;line-height:1.65;color:var(--muted);margin:0;}
+
+  /* ---------- NOTES ---------- */
+  .notes-body{font-family:var(--font-body);font-size:18.5px;line-height:1.85;max-width:560px;color:var(--text);margin:0 0 26px;}
+  .notes-body em{color:var(--mustard-dim);font-style:italic;}
+  .mailto-link{font-family:var(--font-mono);font-size:13px;color:var(--teal-dim);text-decoration:none;border-bottom:2px solid var(--teal-dim);padding-bottom:2px;}
+  .mailto-link:hover{color:var(--text);border-color:var(--text);}
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  .contact-inner{padding:76px 0 40px;text-align:left;}
+  .contact-title{font-family:var(--font-display);font-weight:700;font-size:clamp(28px,4.6vw,44px);margin:0 0 16px;}
+  .contact-sub{font-family:var(--font-body);font-style:italic;color:var(--muted);font-size:17px;margin:0 0 30px;max-width:480px;}
+  .contact-links{display:flex;flex-direction:column;gap:10px;margin-bottom:52px;}
+  .contact-links a{font-family:var(--font-mono);font-size:15px;text-decoration:none;color:var(--text);width:fit-content;border-bottom:2px solid transparent;}
+  .contact-links a:hover{border-color:var(--mustard);color:var(--mustard-dim);}
+  footer{border-top:1px solid var(--card-border);padding:20px 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+  footer p{font-family:var(--font-mono);font-size:11px;color:var(--muted);margin:0;letter-spacing:0.02em;cursor:default;}
+</style>
+</head>
+<body>
+<!--
+  Hey — thanks for checking the source. This whole thing is hand-coded,
+  no page builder, no template. If you're the kind of person who reads
+  view-source on other people's sites too, we'd probably get along.
+  Say hi: msdyatt@me.com
+-->
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand">SAM<span>·</span>DYATT</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">≡</button>
+    <nav class="links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#systems">Systems</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#notes">Notes</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <p class="eyebrow"><span class="device-chip"><span class="dot"></span>SYSTEMS ENGINEER · LEANDER, TX</span></p>
+    <h1 class="hero-line">
+      <span>I build the machine.</span>
+      <span class="accent">Then I write the manual.<span class="blink-cursor">█</span></span>
+    </h1>
+    <p class="hero-sub">Fifteen years in IT systems work, and just as many spent turning complicated things into lessons people actually finish. Both halves live here.</p>
+    <div class="hero-cta">
+      <a href="#systems" class="btn btn-primary">See what I've shipped →</a>
+      <a href="#about" class="btn btn-ghost">Read the long version</a>
+    </div>
+    <p class="device-chip"><span class="dot"></span>CURRENTLY: SHIPPING AN SSL CHECKER + TINKERING WITH A QUEST HEADSET</p>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="track-section" id="about">
+  <div class="spine-col"><span class="node">01·SYS</span></div>
+  <div class="content-col reveal">
+    <h2 class="section-title">Build history</h2>
+    <div class="about-grid">
+      <ul class="changelog">
+        <li><span class="yr">2010</span><span><span class="role">Technical Support Team Lead</span><span class="org">iFixit</span></span></li>
+        <li><span class="yr">2018</span><span><span class="role">IT Coordinator</span><span class="org">Better Business Bureau</span></span></li>
+        <li><span class="yr">2020</span><span><span class="role">Systems Support Engineer</span><span class="org">Zilker Partners / AMBA</span></span></li>
+        <li><span class="yr">2021</span><span><span class="role">Systems Administrator</span><span class="org">Easy Tiger</span></span></li>
+        <li><span class="yr">2022</span><span><span class="role">Systems Engineer</span><span class="org">Innovative Computing Systems — current</span></span></li>
+      </ul>
+      <div class="about-copy">
+        <p>I've spent a decade and a half moving through IT — from fixing individual devices, to administrating systems for a hundred-plus person company, to supporting law firms that can't afford a single dropped ball.</p>
+        <p>Somewhere in the mix, the same instinct kept showing up: when something worked, I wanted to know if I could teach someone else to run it too. That instinct built training programs at the Better Business Bureau, took me to Chicago and Kenya to teach repair skills for iFixit, and now shapes how I write documentation, structure automation, and think about the next thing I want to build — whether it's a script or a story.</p>
+        <p>That same itch for pulling things apart shows up off the clock, too — most recently as a Quest headset that's been disassembled more than it's actually been used to play anything, just to see how the tracking and passthrough cameras work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SYSTEMS -->
+<section class="track-section" id="systems">
+  <div class="spine-col"><span class="node">02·SYS</span></div>
+  <div class="content-col reveal">
+    <h2 class="section-title">Systems I've shipped</h2>
+    <div class="card-grid">
+      <div class="card">
+        <span class="tag"><img src="https://www.google.com/s2/favicons?domain=easytigeraustin.com&sz=64" alt="">EASY TIGER · 2021</span>
+        <h3>M365 consolidation analysis</h3>
+        <p>Built the cost-benefit case comparing existing SaaS/licensing spend against a consolidated Microsoft 365 rollout across 100+ users. The analysis became the migration.</p>
+      </div>
+      <div class="card">
+        <span class="tag"><img src="https://www.google.com/s2/favicons?domain=easytigeraustin.com&sz=64" alt="">EASY TIGER · 2021–2022</span>
+        <h3>Zero touch deployment</h3>
+        <p>Rolled out Apple Business Manager synced with Intune so new hardware provisioned itself — no manual imaging, no bottleneck at onboarding.</p>
+      </div>
+      <div class="card">
+        <span class="tag"><img src="https://www.google.com/s2/favicons?domain=bbb.org&sz=64" alt="">BBB · 2018–2020</span>
+        <h3>Automated onboarding</h3>
+        <p>Replaced manual on/off-boarding steps with PowerShell, then rolled the process out organization-wide.</p>
+      </div>
+    </div>
+    <div class="next-up">
+      <strong>Next up —</strong> currently building an open-source automation tool pulled from real MSP pain points. Nothing to link yet. It'll show up here once it's real.
+    </div>
+  </div>
+</section>
+
+<!-- TEACHING -->
+<div class="teaching-wrap">
+  <section class="track-section" id="teaching">
+    <div class="spine-col teal-line"><span class="node">03·LORE</span></div>
+    <div class="content-col reveal">
+      <h2 class="section-title">Teaching &amp; play</h2>
+      <p class="teaching-intro">Long before "enablement" was a job title, I was building curricula. Some of it looked like training. Some of it looked like a game. All of it was the same problem: take something complicated and structure it so a room full of people can actually get through it.</p>
+      <div class="teach-list">
+        <div class="teach-item">
+          <span class="k">IN-PERSON</span>
+          <h4>iFixit repair training</h4>
+          <p>Community device-repair education delivered in person in Chicago and Kenya, plus mentoring junior technicians as the escalation point for complex issues.</p>
+        </div>
+        <div class="teach-item">
+          <span class="k">WEEKLY · 10+ YEARS</span>
+          <h4>Community curriculum</h4>
+          <p>Structured, discussion-based lessons for an adult community group — researched and written from scratch, every week, for over a decade.</p>
+        </div>
+        <div class="teach-item">
+          <span class="k">25+ PARTICIPANTS</span>
+          <h4>Mystery parties</h4>
+          <p>Multi-act mystery experiences with layered mechanics, real facilitator logistics, and a room full of people who have to actually solve it together.</p>
+        </div>
+        <div class="teach-item">
+          <span class="k">MULTI-YEAR</span>
+          <h4>D&amp;D campaigns</h4>
+          <p>Long-running, layered campaigns designed and run over years — world-building as systems design, one session at a time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- NOTES -->
+<section class="track-section" id="notes">
+  <div class="spine-col"><span class="node">04·MIX</span></div>
+  <div class="content-col reveal">
+    <h2 class="section-title">Field notes</h2>
+    <p class="notes-body">Nothing published yet — <em>the first post is in progress.</em> When it's ready, it'll live here: notes on automation, curriculum design, and the overlap between them.</p>
+    <a class="mailto-link" href="mailto:msdyatt@me.com?subject=Notify%20me%20when%20Field%20Notes%20launches">Get a nudge when it's up →</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap contact-inner">
+    <h2 class="contact-title">Say hello.</h2>
+    <p class="contact-sub">Based in Leander, TX — open to remote, or anything within about 45 minutes of Austin.</p>
+    <div class="contact-links">
+      <a href="mailto:msdyatt@me.com">msdyatt@me.com</a>
+      <a href="https://linkedin.com/profile/sam-dyatt" target="_blank" rel="noopener">linkedin.com/profile/sam-dyatt</a>
+    </div>
+  </div>
+  <div class="wrap">
+    <footer>
+      <p title="Handwritten, over-engineered, and re-read for typos more times than is healthy.">Built by hand. No template.</p>
+      <p>© 2026 Sam Dyatt</p>
+    </footer>
+  </div>
+</section>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    links.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReduced && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  }
+</script>
+
+</body>
+</html>
