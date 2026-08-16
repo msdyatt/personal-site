@@ -1,484 +1,101 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sam Dyatt — Systems &amp; Curriculum</title>
-<link rel="icon" type="image/png" href="data:image/png;base64,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">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --ink:#14171C; --ink-2:#1B2029; --chalk:#EDE9DF; --slate:#8D93A3;
-    --parchment:#EDE6D6; --parchment-ink:#2A251D; --parchment-slate:#6E6656;
-    --blueprint:#5C93C9; --blueprint-dim:#3E5E7D;
-    --brass:#C89B3C; --brass-dim:#8C6E2C;
-    --font-display:'Space Grotesk',sans-serif;
-    --font-serif:'Fraunces',serif;
-    --font-mono:'IBM Plex Mono',monospace;
-    --maxw:1080px;
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{margin:0;background:var(--ink);color:var(--chalk);font-family:var(--font-display);line-height:1.5;-webkit-font-smoothing:antialiased;}
-  a{color:inherit;}
-  img{max-width:100%;display:block;}
-  ::selection{background:var(--brass);color:var(--ink);}
-  a:focus-visible,button:focus-visible{outline:2px solid var(--brass);outline-offset:3px;}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
-  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.35;}}
-
-  header.nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(20,23,28,0.86);backdrop-filter:blur(10px);border-bottom:1px solid #FFFFFF14;}
-  .nav-inner{max-width:var(--maxw);margin:0 auto;padding:12px 28px;display:flex;align-items:center;justify-content:space-between;}
-  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--chalk);}
-  .brand-icon{height:44px;width:auto;display:block;flex:0 0 auto;}
-  .brand-text{display:flex;flex-direction:column;line-height:1.2;}
-  .brand-name{font-family:var(--font-mono);font-size:13px;letter-spacing:0.12em;font-weight:500;color:var(--chalk);}
-  .brand-tag{font-family:var(--font-mono);font-size:8.5px;letter-spacing:0.15em;color:var(--brass);margin-top:3px;}
-  nav.links{display:flex;gap:28px;}
-  nav.links a{font-family:var(--font-mono);font-size:12px;letter-spacing:0.08em;text-decoration:none;color:var(--slate);text-transform:uppercase;transition:color .2s ease;}
-  nav.links a:hover{color:var(--chalk);}
-  .nav-toggle{display:none;background:none;border:none;color:var(--chalk);font-size:20px;cursor:pointer;}
-  @media (max-width:720px){
-    .brand-icon{height:36px;}
-    .brand-name{font-size:11.5px;}
-    .brand-tag{font-size:7.5px;}
-    nav.links{position:absolute;top:100%;left:0;right:0;background:var(--ink-2);flex-direction:column;gap:0;border-bottom:1px solid #FFFFFF14;max-height:0;overflow:hidden;transition:max-height .3s ease;}
-    nav.links.open{max-height:320px;}
-    nav.links a{padding:14px 28px;border-top:1px solid #FFFFFF0F;}
-    .nav-toggle{display:block;}
-  }
-
-  .hero{padding:158px 0 88px;position:relative;overflow:hidden;}
-  .hero::before{
-    content:"";position:absolute;inset:0;
-    background-image:linear-gradient(#FFFFFF08 1px,transparent 1px),linear-gradient(90deg,#FFFFFF08 1px,transparent 1px);
-    background-size:42px 42px;mask-image:radial-gradient(ellipse 60% 50% at 30% 20%,black,transparent);pointer-events:none;
-  }
-  .eyebrow{font-family:var(--font-mono);font-size:12px;letter-spacing:0.14em;color:var(--blueprint);text-transform:uppercase;margin:0 0 22px;display:inline-flex;align-items:center;gap:10px;position:relative;}
-  .eyebrow::before{content:"";width:8px;height:8px;background:var(--blueprint);border-radius:1px;display:inline-block;}
-  h1.hero-line{font-family:var(--font-display);font-weight:700;font-size:clamp(32px,5.4vw,54px);line-height:1.12;letter-spacing:-0.01em;margin:0 0 26px;position:relative;}
-  h1.hero-line span{display:block;}
-  h1.hero-line .accent{color:var(--brass);}
-  .hero-sub{font-family:var(--font-serif);font-style:italic;font-weight:500;font-size:clamp(17px,2.2vw,20px);color:var(--slate);line-height:1.6;margin:0 0 34px;max-width:560px;position:relative;}
-  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:26px;position:relative;}
-  .btn{font-family:var(--font-mono);font-size:13px;letter-spacing:0.03em;padding:12px 22px;text-decoration:none;border-radius:3px;display:inline-block;transition:transform .15s ease, border-color .15s ease, color .15s ease;}
-  .btn-primary{background:var(--brass);color:var(--ink);font-weight:500;}
-  .btn-primary:hover{transform:translateY(-2px);}
-  .btn-ghost{border:1px solid #FFFFFF33;color:var(--chalk);}
-  .btn-ghost:hover{border-color:var(--blueprint);color:var(--blueprint);}
-  .currently{font-family:var(--font-mono);font-size:12.5px;color:var(--slate);display:flex;align-items:center;gap:9px;position:relative;}
-  .currently .dot{width:6px;height:6px;border-radius:50%;background:var(--brass);animation:pulse 2s ease-in-out infinite;flex:0 0 auto;}
-  @media (prefers-reduced-motion:reduce){.currently .dot{animation:none;}}
-
-  .track-section{display:grid;grid-template-columns:56px 1fr;max-width:var(--maxw);margin:0 auto;}
-  .spine-col{border-left:2px solid var(--blueprint-dim);position:relative;}
-  .spine-col.brass-line{border-left-color:var(--brass-dim);}
-  .node{position:absolute;top:6px;left:-13px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;background:var(--blueprint);color:var(--ink);padding:4px 7px;border-radius:2px;white-space:nowrap;font-weight:500;}
-  .brass-line .node{background:var(--brass);}
-  .content-col{padding:64px 28px 64px 32px;}
-  @media (max-width:720px){
-    .track-section{grid-template-columns:32px 1fr;padding-left:18px;}
-    .content-col{padding:44px 16px 44px 20px;}
-    .node{font-size:9px;left:-11px;padding:3px 5px;}
-  }
-  .section-title{font-family:var(--font-display);font-weight:600;font-size:clamp(26px,3.6vw,38px);margin:0 0 36px;letter-spacing:-0.01em;}
-  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease;}
-  .reveal.in{opacity:1;transform:translateY(0);}
-  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
-
-  .about-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:48px;}
-  @media (max-width:820px){.about-grid{grid-template-columns:1fr;}}
-  .changelog{list-style:none;margin:0;padding:0;font-family:var(--font-mono);font-size:14px;}
-  .changelog li{padding:14px 0;border-top:1px solid #FFFFFF14;display:flex;gap:16px;color:var(--slate);}
-  .changelog li:last-child{border-bottom:1px solid #FFFFFF14;}
-  .changelog .yr{color:var(--brass);flex:0 0 52px;}
-  .changelog .role{color:var(--chalk);}
-  .changelog .org{display:block;color:var(--slate);font-size:12.5px;margin-top:2px;}
-  .about-copy{font-family:var(--font-serif);font-size:18px;line-height:1.75;color:var(--chalk);}
-  .about-copy p{margin:0 0 18px;}
-
-  .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-bottom:32px;}
-  .card{background:var(--ink-2);border:1px solid #FFFFFF14;border-radius:4px;padding:24px;transition:border-color .2s ease, transform .2s ease;}
-  .card:hover{border-color:var(--blueprint-dim);transform:translateY(-3px);}
-  .card .tag{display:flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:11px;color:var(--blueprint);letter-spacing:0.06em;margin-bottom:12px;}
-  .card .tag img{width:20px;height:20px;border-radius:4px;background:#fff;padding:2px;}
-  .card h3{font-family:var(--font-display);font-size:18px;margin:0 0 10px;font-weight:600;}
-  .card p{font-family:var(--font-display);font-size:14.5px;color:var(--slate);line-height:1.6;margin:0;}
-  .next-up{border:1px dashed var(--brass-dim);border-radius:4px;padding:22px 24px;font-family:var(--font-mono);font-size:13.5px;color:var(--slate);line-height:1.7;}
-  .next-up strong{color:var(--brass);font-weight:500;}
-
-  .teaching-wrap{background:var(--parchment);color:var(--parchment-ink);}
-  .teaching-wrap .spine-col{border-left-color:var(--brass-dim);}
-  .teaching-wrap .section-title{color:var(--parchment-ink);}
-  .teaching-intro{font-family:var(--font-serif);font-size:19px;line-height:1.75;max-width:640px;margin:0 0 40px;color:var(--parchment-ink);}
-  .teach-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;}
-  .teach-item h4{font-family:var(--font-display);font-weight:600;font-size:16px;margin:0 0 8px;color:var(--parchment-ink);}
-  .teach-item p{font-family:var(--font-display);font-size:14px;line-height:1.65;color:var(--parchment-slate);margin:0 0 10px;}
-  .teach-item .k{font-family:var(--font-mono);font-size:11px;color:var(--brass-dim);letter-spacing:0.06em;display:block;margin-bottom:6px;}
-  .dice-row{display:flex;align-items:center;gap:10px;margin-top:10px;}
-  .dice-btn{
-    width:38px;height:38px;flex:0 0 auto;
-    clip-path:polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
-    background:#FFFFFF; border:1px solid var(--brass-dim); color:var(--brass-dim);
-    font-family:var(--font-mono); font-size:10px; font-weight:600; cursor:pointer;
-    display:flex;align-items:center;justify-content:center;transition:color .15s ease, border-color .15s ease;
-  }
-  .dice-btn:hover{color:var(--parchment-ink);border-color:var(--parchment-ink);}
-  .dice-result{font-family:var(--font-mono);font-size:13px;color:var(--parchment-slate);min-height:18px;}
-
-  .notes-body{font-family:var(--font-serif);font-size:19px;line-height:1.8;max-width:560px;color:var(--chalk);margin:0 0 28px;}
-  .notes-body em{color:var(--brass);font-style:italic;}
-  .mailto-link{font-family:var(--font-mono);font-size:13px;color:var(--blueprint);text-decoration:none;border-bottom:1px solid var(--blueprint-dim);padding-bottom:2px;}
-  .mailto-link:hover{color:var(--chalk);border-color:var(--chalk);}
-
-  .contact-inner{padding:80px 0 40px;text-align:left;}
-  .contact-flex{display:flex;gap:36px;align-items:flex-start;flex-wrap:wrap;}
-  .contact-photo{width:120px;height:120px;object-fit:cover;border-radius:16px;border:3px solid var(--brass);box-shadow:0 10px 24px rgba(0,0,0,.4);flex:0 0 auto;}
-  @media (max-width:560px){.contact-flex{flex-direction:column;} .contact-photo{width:96px;height:96px;}}
-  .contact-title{font-family:var(--font-display);font-weight:700;font-size:clamp(30px,5vw,48px);margin:0 0 18px;letter-spacing:-0.01em;}
-  .contact-sub{font-family:var(--font-serif);font-style:italic;color:var(--slate);font-size:17px;margin:0 0 32px;max-width:480px;}
-  .contact-links{display:flex;flex-direction:column;gap:10px;margin-bottom:56px;}
-  .contact-links a{font-family:var(--font-mono);font-size:15px;text-decoration:none;color:var(--chalk);width:fit-content;border-bottom:1px solid transparent;}
-  .contact-links a:hover{border-color:var(--brass);color:var(--brass);}
-  footer{border-top:1px solid #FFFFFF14;padding:22px 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
-  footer p{font-family:var(--font-mono);font-size:11.5px;color:var(--slate);margin:0;letter-spacing:0.03em;cursor:default;}
-
-  .konami-toast{
-    position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(16px);
-    background:var(--ink-2);border:1px solid var(--blueprint-dim);color:var(--chalk);
-    font-family:var(--font-mono);font-size:12.5px;padding:14px 20px;border-radius:6px;
-    max-width:440px;text-align:center;opacity:0;pointer-events:none;
-    transition:opacity .3s ease, transform .3s ease;z-index:999;
-  }
-  .konami-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-
-  .dice-rain-die{
-    position:fixed;top:-40px;width:30px;height:30px;
-    clip-path:polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
-    background:var(--ink-2);border:1px solid var(--brass);color:var(--brass);
-    font-family:var(--font-mono);font-size:11px;font-weight:600;
-    display:flex;align-items:center;justify-content:center;
-    pointer-events:none;z-index:998;
-    animation-name:diceFall;animation-timing-function:ease-in;animation-fill-mode:forwards;
-  }
-  @keyframes diceFall{
-    0%{transform:translateY(0) rotate(0deg);opacity:1;}
-    100%{transform:translateY(105vh) rotate(360deg);opacity:.2;}
-  }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sam Dyatt Systems — Technology Consulting, Leander &amp; Austin</title>
+  <meta name="description" content="Network, systems, POS, and AI — one person, not four vendors. Fifteen years running real business technology, now for Leander and Austin small businesses.">
+  <link rel="canonical" href="https://samdyatt.com/">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Sam Dyatt Systems">
+  <meta property="og:title" content="Sam Dyatt Systems — Technology Consulting, Leander &amp; Austin">
+  <meta property="og:description" content="Network, systems, POS, and AI — one person, not four vendors. Fifteen years running real business technology for Leander and Austin small businesses.">
+  <meta property="og:url" content="https://samdyatt.com/">
+  <meta property="og:image" content="https://samdyatt.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sam Dyatt Systems — Technology Consulting, Leander &amp; Austin">
+  <meta name="twitter:description" content="Network, systems, POS, and AI — one person, not four vendors. Fifteen years running real business technology for Leander and Austin small businesses.">
+  <meta name="twitter:image" content="https://samdyatt.com/og-image.png">
+  <meta name="theme-color" content="#102631">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MH9GB22TVB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-MH9GB22TVB');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+  <style>
+    :root { --ink:#102631; --ink-2:#183946; --paper:#f7f6f1; --cream:#efede5; --white:#fffefa; --muted:#60717a; --line:#d9ddd5; --amber:#e8873d; --amber-deep:#c9682c; --orange:#d96f38; --radius:18px; --max:1180px; }
+    * { box-sizing:border-box } html { scroll-behavior:smooth } body { margin:0; font-family:Manrope,Arial,sans-serif; color:var(--ink); background:var(--paper); line-height:1.65; -webkit-font-smoothing:antialiased } a { color:inherit } h1,h2,h3,p { margin-top:0 } h1,h2 { letter-spacing:-.055em; line-height:1.02 } h1 { font-size:clamp(3rem,7vw,6.5rem); font-weight:700; max-width:1000px } h2 { font-size:clamp(2.3rem,4.5vw,4.25rem); font-weight:700; max-width:760px } h3 { line-height:1.18 } .wrap { width:min(var(--max),calc(100% - 48px)); margin:auto } section { padding:112px 0 } .eyebrow { display:flex; align-items:center; gap:9px; font:500 .72rem/1 'DM Mono',monospace; letter-spacing:.1em; text-transform:uppercase; color:var(--orange); margin-bottom:18px } .eyebrow:before { content:''; width:21px; height:1px; background:currentColor } .lead { color:var(--muted); font-size:1.1rem; max-width:640px } .skip { position:absolute; left:-10000px } .skip:focus { left:16px; top:12px; z-index:99; background:#fff; padding:10px }
+    /* navigation + mark */
+    .site-header { position:sticky; top:0; z-index:20; background:rgba(247,246,241,.91); backdrop-filter:blur(16px); border-bottom:1px solid rgba(16,38,49,.08) } .nav { height:76px; display:flex; justify-content:space-between; align-items:center } .brand { display:inline-flex; align-items:center; gap:10px; text-decoration:none; font-weight:800; line-height:1; letter-spacing:-.04em } .brand small { display:block; margin-top:4px; color:var(--muted); font:500 .55rem/1 'DM Mono',monospace; letter-spacing:.1em } .mark { width:38px; height:38px; flex:0 0 auto } .nav-links { display:flex; gap:27px; align-items:center; list-style:none; margin:0; padding:0; font-size:.8rem; font-weight:700 } .nav-links a { text-decoration:none } .nav-links a:not(.nav-cta):hover { color:var(--orange) } .nav-cta, .button { display:inline-flex; align-items:center; justify-content:center; gap:9px; text-decoration:none; font-weight:800; border-radius:999px; transition:transform .18s,background .18s } .nav-cta { padding:10px 16px; background:var(--ink); color:#fff; font-size:.78rem } .button { padding:15px 22px; font-size:.9rem } .button:hover,.nav-cta:hover { transform:translateY(-2px) } .button.primary { background:var(--amber); color:var(--ink) } .button.primary:hover { background:var(--amber-deep); color:#fff } .button.outline { border:1px solid rgba(255,255,255,.5); color:#fff } .button.dark { border:1px solid var(--ink); color:var(--ink) } .menu { display:none; border:0; background:none; font:700 1.4rem/1 Manrope; color:var(--ink) }
+    /* hero */
+    .hero { min-height:690px; padding:82px 0 56px; overflow:hidden; position:relative; background:var(--ink); color:var(--white) } .hero:after { content:''; position:absolute; width:700px; height:700px; border:1px solid rgba(232,135,61,.32); border-radius:50%; right:-260px; top:-260px; box-shadow:0 0 0 55px rgba(232,135,61,.055),0 0 0 110px rgba(232,135,61,.025) } .hero .wrap { position:relative; z-index:1 } .hero .eyebrow { color:var(--amber) } .hero h1 em { color:var(--amber); font-family:Newsreader,serif; font-weight:500 } .hero-copy { margin:27px 0 0; max-width:650px; font-size:1.12rem; color:#c1d1d5 } .hero-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:35px } .hero-notes { margin-top:76px; display:grid; grid-template-columns:repeat(3,max-content); gap:42px; border-top:1px solid rgba(255,255,255,.16); padding-top:19px } .hero-stat b { display:block; color:var(--amber); font-size:1.38rem; letter-spacing:-.04em } .hero-stat span { display:block; max-width:145px; color:#aec1c5; font-size:.73rem; line-height:1.45 } .corner-note { position:absolute; right:0; bottom:0; width:230px; font:400 .72rem/1.5 'DM Mono',monospace; color:#a7bdc1; border-left:1px solid rgba(255,255,255,.2); padding-left:17px }
+    .stack { background:var(--cream); padding:27px 0 30px; border-bottom:1px solid var(--line) } .stack-label { margin:0 0 13px; color:var(--muted); font:500 .68rem/1.3 'DM Mono',monospace; letter-spacing:.1em; text-transform:uppercase } .pills { display:flex; flex-wrap:wrap; gap:7px } .pill { padding:6px 10px; border:1px solid #ccd2ca; border-radius:5px; font:500 .7rem/1 'DM Mono',monospace; color:var(--ink-2); background:rgba(255,255,255,.4) }
+    /* content */
+    .split-head { display:grid; grid-template-columns:1.1fr .8fr; gap:70px; align-items:end } .fit-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:42px } .fit-card { padding:32px; border-radius:var(--radius); border:1px solid var(--line) } .fit-card.good { background:#e8f4dc; border-color:#cce0b6 } .fit-card.other { background:var(--white) } .fit-card h3 { margin-bottom:16px; font-size:1.2rem } .fit-card ul { padding:0; margin:0; list-style:none; color:#435861; font-size:.92rem } .fit-card li { display:grid; grid-template-columns:17px 1fr; gap:9px; margin:10px 0 } .good li:before { content:'+'; color:#547a28; font-weight:800 } .other li:before { content:'–'; color:var(--muted); font-weight:800 }
+    .process { color:var(--white); background:var(--ink) } .process .eyebrow { color:var(--amber) } .process h2 { max-width:600px } .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:48px } .step { min-height:238px; padding:28px; border:1px solid rgba(255,255,255,.18); border-radius:var(--radius); background:rgba(255,255,255,.035) } .step-number { color:var(--amber); font:500 .75rem/1 'DM Mono',monospace; letter-spacing:.1em } .step h3 { margin:32px 0 10px; font-size:1.1rem } .step p { margin:0; color:#bed0d2; font-size:.9rem; line-height:1.65 } .guarantee { display:grid; grid-template-columns:55px 1fr; gap:16px; margin-top:14px; padding:24px 28px; background:#183943; border-radius:var(--radius) } .seal { width:40px; height:40px; border:1px solid var(--amber); border-radius:50%; display:grid; place-items:center; color:var(--amber) } .guarantee h3 { margin:0 0 4px; font-size:1rem } .guarantee p { margin:0; color:#d3e0df; font-size:.9rem }.fine { color:#9db5b8; font-size:.75rem; margin:20px 0 0 }
+    .service-intro { margin-bottom:46px } .pricing-label { margin:46px 0 12px; color:var(--orange); font:500 .72rem/1 'DM Mono',monospace; text-transform:uppercase; letter-spacing:.1em } .flagship { display:grid; grid-template-columns:1.35fr .65fr; gap:40px; padding:40px; border-radius:var(--radius); background:var(--white); border:1px solid var(--ink); box-shadow:8px 8px 0 var(--amber) } .flagship h3 { font-size:1.45rem; margin-bottom:12px } .price { font-size:2.7rem; font-weight:800; letter-spacing:-.07em } .price small { color:var(--muted); font-size:.83rem; font-weight:500; letter-spacing:0 } .feature-list { padding:0; list-style:none; margin:20px 0 26px; color:var(--muted); font-size:.91rem } .feature-list li { margin:9px 0; padding-left:20px; position:relative } .feature-list li:before { content:'↗'; position:absolute; left:0; color:var(--orange) } .quick { align-self:start; padding:23px; border-radius:12px; background:var(--cream) } .quick h4 { margin:0 0 9px; font-size:.95rem } .quick .amt { font-size:1.7rem; font-weight:800; letter-spacing:-.05em } .quick p { color:var(--muted); font-size:.84rem } .grid4,.grid3 { display:grid; gap:14px }.grid4 { grid-template-columns:repeat(4,1fr) }.grid3 { grid-template-columns:repeat(3,1fr) }.service-card { min-height:215px; padding:24px; border:1px solid var(--line); background:var(--white); border-radius:13px }.service-card h3 { font-size:1rem; margin:0 0 9px }.service-card .amt { display:block; font-size:.95rem; font-weight:800; color:var(--orange); margin-bottom:12px }.service-card p { margin:0; color:var(--muted); font-size:.84rem; line-height:1.55 }
+    .toast-section { background:var(--cream) }.toast-card { position:relative; overflow:hidden; display:grid; grid-template-columns:1fr .83fr; gap:50px; padding:52px; background:var(--ink-2); color:#fff; border-radius:22px }.toast-card:after { content:'T'; position:absolute; bottom:-115px; right:15px; color:rgba(232,135,61,.09); font:500 25rem/1 Newsreader,serif }.toast-card > * { position:relative; z-index:1 }.toast-card .eyebrow { color:var(--amber) }.toast-card h2 { font-size:clamp(2.3rem,4vw,3.6rem) }.toast-card p { color:#c6d8d9 }.toast-card ul { margin:15px 0 0; padding:0; list-style:none; align-self:center }.toast-card li { border-top:1px solid rgba(255,255,255,.2); padding:15px 0; color:#deebea; font-size:.92rem }.toast-card li:before { content:'01'; display:inline-block; width:35px; color:var(--amber); font:500 .68rem 'DM Mono',monospace }.toast-card li:nth-child(2):before { content:'02' }.toast-card li:nth-child(3):before { content:'03' }.toast-card li:nth-child(4):before { content:'04' }
+    .proof-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:44px }.proof-card { padding:27px; border-radius:14px; background:var(--white); border:1px solid var(--line) }.proof-card .org { color:var(--orange); font:500 .68rem/1 'DM Mono',monospace; letter-spacing:.08em; text-transform:uppercase }.proof-card h3 { font-size:1.1rem; margin:14px 0 9px }.proof-card p { margin:0; color:var(--muted); font-size:.9rem }.about-section { background:var(--cream) }.about { display:grid; grid-template-columns:1fr .8fr; gap:75px }.about p { color:#435861 }.aside { padding:28px; background:var(--white); border-radius:14px; border-top:4px solid var(--orange); font-size:.9rem }.aside p:last-child { margin-bottom:0 }.aside a { color:var(--ink); font-weight:800 }.faq { max-width:820px }.faq-item { padding:25px 0; border-bottom:1px solid var(--line) }.faq-item h3 { margin:0 0 7px; font-size:1.06rem }.faq-item p { margin:0; color:var(--muted); font-size:.91rem }
+    .contact { position:relative; overflow:hidden; background:#e9e3d6; padding:108px 0; border-top:1px solid #d4c8b7 }.contact:after { content:''; position:absolute; width:600px; height:600px; border:1px solid rgba(16,38,49,.2); border-radius:50%; right:-320px; bottom:-350px; box-shadow:0 0 0 45px rgba(16,38,49,.06) }.contact .wrap { position:relative; z-index:1 }.contact .eyebrow { color:var(--orange) }.contact h2 { max-width:760px }.contact .lead { color:#36505a }.contact-links { display:flex; gap:21px; flex-wrap:wrap; margin-top:28px; font-size:.86rem; font-weight:800 }.contact-links a { text-decoration-thickness:1px; text-underline-offset:4px } footer { background:#091b23; color:#9eb5b7; padding:25px 0; font-size:.75rem }
+    @media(max-width:900px) { .nav-links { gap:15px }.grid4 { grid-template-columns:repeat(2,1fr) }.hero h1 { max-width:780px }.corner-note { display:none } }
+    @media(max-width:720px) { .wrap { width:min(100% - 32px,var(--max)) } section { padding:74px 0 } .nav { height:67px }.menu { display:block }.nav-links { display:none; position:absolute; top:67px; left:0; right:0; padding:10px 16px 18px; background:var(--paper); border-bottom:1px solid var(--line); box-shadow:0 10px 16px rgba(16,38,49,.06) }.nav-links.open { display:grid; gap:0 }.nav-links a { display:block; padding:12px 2px }.nav-cta { display:inline-flex!important; width:max-content; margin-top:7px }.hero { min-height:0; padding:65px 0 47px }.hero h1 { font-size:clamp(2.75rem,14vw,4.4rem) }.hero-notes { gap:18px; grid-template-columns:repeat(3,1fr); margin-top:50px }.hero-stat b { font-size:1.1rem }.split-head,.fit-grid,.flagship,.toast-card,.about { grid-template-columns:1fr; gap:25px }.steps,.grid3 { grid-template-columns:1fr }.step { min-height:0 }.flagship { padding:27px; box-shadow:5px 5px 0 var(--amber) }.toast-card { padding:31px 26px }.proof-grid { grid-template-columns:1fr }.contact { padding:75px 0 }.button { width:100%; padding:15px 18px }.hero-actions .button.outline { width:auto }.brand { font-size:.92rem } }
+  </style>
 </head>
 <body>
-<!--
-  Hey — thanks for checking the source. This whole thing is hand-coded,
-  no page builder, no template. If you're the kind of person who reads
-  view-source on other people's sites too, we'd probably get along.
-  Say hi: sam@samdyatt.com
--->
-
-<header class="nav">
-  <div class="nav-inner">
-    <a href="#top" class="brand">
-      <img src="data:image/png;base64,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" alt="Sam Dyatt" class="brand-icon">
-      <span class="brand-text">
-        <span class="brand-name">SAM DYATT</span>
-        <span class="brand-tag">SYSTEMS · STORIES</span>
-      </span>
-    </a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">≡</button>
-    <nav class="links" id="navLinks">
-        <a href="#offerings">Now</a>
-      <a href="#about">About</a>
-      <a href="#systems">Systems</a>
-      <a href="#teaching">Teaching</a>
-      <a href="#notes">Notes</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </div>
-</header>
-
-<section class="hero" id="top">
-  <div class="wrap">
-<p class="eyebrow">AI &amp; Automation Consulting · Austin, TX</p>
-    <h1 class="hero-line">
-      <span>AI and automation training</span>
-      <span class="accent">your team will actually use.</span>
-    </h1>
-    <p class="hero-sub">Fifteen years as a systems engineer, spent making complex tools work for real people. Now I run hands-on workshops and training programs that get your small business team using AI on everyday work — no jargon, no wasted budget on tools nobody opens again.</p>
-    <div class="hero-cta">
-      <a href="#" data-cal-link="sam.dyatt/free-15-minute-intro-call" data-cal-namespace="free-15-minute-intro-call" data-cal-config='{"layout":"month_view"}' class="btn btn-primary">Book a free 15-min call →</a>
-      <a href="#offerings" class="btn btn-ghost">See how I can help</a>
-    </div>
-    <p class="currently"><span class="dot"></span>Currently: building small tools with AI, and running a long-running D&amp;D campaign.</p>
-  </div>
-</section>
-
-<!-- OFFERINGS -->
-<section class="track-section" id="offerings">
-  <div class="spine-col"><span class="node">01 · NOW</span></div>
-  <div class="content-col reveal">
-    <h2 class="section-title">Work with me</h2>
-        <p class="teaching-intro" style="color:var(--slate);max-width:640px;margin:0 0 36px;">I run hands-on AI and automation training for small businesses, and speak on IT automation, device management, and the systems lessons I picked up over a decade of teaching. Every engagement below gets scoped to your team and timeline — the free call is where that conversation starts.</p>
-    <div class="card-grid">
-            <a class="card" href="mailto:sam@samdyatt.com?subject=Intro%20Workshop%20inquiry" style="display:block;text-decoration:none;color:inherit;">
-        <div class="tag">WORKSHOP</div>
-        <h3>Intro Workshop</h3>
-        <p>A focused, hands-on session that gets your team using AI and automation tools on real work by the end of the day. No coding required. Best for small businesses in Leander and the greater Austin area wanting a fast, practical start.</p>
-              <p style="font-family:var(--font-mono);font-size:12px;color:var(--brass);margin-top:14px;">Get a quote →</p>
-      </a>
-            <a class="card" href="mailto:sam@samdyatt.com?subject=Team%20Training%20Program%20inquiry" style="display:block;text-decoration:none;color:inherit;">
-        <div class="tag">MOST REQUESTED</div>
-        <h3>Team Training Program</h3>
-        <p>A multi-session program that turns the intro workshop into lasting habits — built around your team's actual tools and workflows, with follow-up support between sessions to keep momentum going.</p>
-              <p style="font-family:var(--font-mono);font-size:12px;color:var(--brass);margin-top:14px;">Get a quote →</p>
-      </a>
-            <a class="card" href="mailto:sam@samdyatt.com?subject=Speaking%20Engagement%20inquiry" style="display:block;text-decoration:none;color:inherit;">
-        <div class="tag">SPEAKING</div>
-        <h3>Speaking Engagement</h3>
-                <p>Talks on IT automation, device management, and the systems lessons learned from a decade spent teaching. Open to conferences, meetups, and corporate events, remote or in person.</p>
-              <p style="font-family:var(--font-mono);font-size:12px;color:var(--brass);margin-top:14px;">Get a quote →</p>
-      </a>
-    </div>
-    <div class="hero-cta" style="margin-top:8px;">
-      <a href="#" data-cal-link="sam.dyatt/free-15-minute-intro-call" data-cal-namespace="free-15-minute-intro-call" data-cal-config='{"layout":"month_view"}' class="btn btn-primary">Book a free 15-min call</a>
-      <a href="mailto:sam@samdyatt.com?subject=Training%2Fspeaking%20inquiry" class="btn btn-ghost">Request a quote</a>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section class="track-section" id="about">
-  <div class="spine-col"><span class="node">02 · SYS</span></div>
-  <div class="content-col reveal">
-    <h2 class="section-title">Build history</h2>
-    <div class="about-grid">
-      <ul class="changelog">
-        <li><span class="yr">2010</span><span><span class="role">Technical Support Team Lead</span><span class="org">iFixit</span></span></li>
-        <li><span class="yr">2018</span><span><span class="role">IT Coordinator</span><span class="org">Better Business Bureau</span></span></li>
-        <li><span class="yr">2020</span><span><span class="role">Systems Support Engineer</span><span class="org">Zilker Partners / AMBA</span></span></li>
-        <li><span class="yr">2021</span><span><span class="role">Systems Administrator</span><span class="org">Easy Tiger</span></span></li>
-        <li><span class="yr">2022</span><span><span class="role">Systems Engineer</span><span class="org">Innovative Computing Systems — current</span></span></li>
-      </ul>
-      <div class="about-copy">
-        <p>I've spent a decade and a half moving through IT — from fixing individual devices, to administrating systems for a hundred-plus person company, to supporting law firms that can't afford a single dropped ball.</p>
-        <p>Somewhere in the mix, the same instinct kept showing up: when something worked, I wanted to know if I could teach someone else to run it too. That instinct built training programs at the Better Business Bureau, took me to Chicago and Kenya to teach repair skills for iFixit, and now shapes how I write documentation, structure automation, and think about the next thing I want to build — whether it's a script or a story.</p>
-                        <p>That same curiosity shows up off the clock, too — these days it goes mostly into building things with AI, and running a long-running D&amp;D campaign.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SYSTEMS -->
-<section class="track-section" id="systems">
-  <div class="spine-col"><span class="node">03 · SYS</span></div>
-  <div class="content-col reveal">
-    <h2 class="section-title">Systems I've shipped</h2>
-    <div class="card-grid">
-      <div class="card">
-        <div class="tag"><img src="https://www.google.com/s2/favicons?domain=easytigeraustin.com&sz=64" alt="">EASY TIGER · 2021</div>
-        <h3>M365 consolidation analysis</h3>
-        <p>Built the cost-benefit case comparing existing SaaS/licensing spend against a consolidated Microsoft 365 rollout across 100+ users. The analysis became the migration.</p>
-      </div>
-      <div class="card">
-        <div class="tag"><img src="https://www.google.com/s2/favicons?domain=easytigeraustin.com&sz=64" alt="">EASY TIGER · 2021–2022</div>
-        <h3>Zero touch deployment</h3>
-        <p>Rolled out Apple Business Manager synced with Intune so new hardware provisioned itself — no manual imaging, no bottleneck at onboarding.</p>
-      </div>
-      <div class="card">
-        <div class="tag"><img src="https://www.google.com/s2/favicons?domain=bbb.org&sz=64" alt="">BBB · 2018–2020</div>
-        <h3>Automated onboarding</h3>
-        <p>Replaced manual on/off-boarding steps with PowerShell, then rolled the process out organization-wide.</p>
-      </div>
-    <div class="card">
-        <div class="tag"><img src="https://www.google.com/s2/favicons?domain=getamba.com&sz=64" alt="">AMBA · 2020</div>
-        <h3>Zendesk ticketing overhaul</h3>
-        <p>Engineered a streamlined Zendesk ticketing system that cut support costs and sped up resolution times during a six-month client engagement.</p>
-      </div>
-    </div>
-    <div class="next-up">
-      <strong>Next up —</strong> currently building an open-source automation tool pulled from real MSP pain points. Nothing to link yet. It'll show up here once it's real.
-    </div>
-  </div>
-</section>
-
-<!-- TEACHING -->
-<div class="teaching-wrap">
-  <section class="track-section" id="teaching">
-    <div class="spine-col brass-line"><span class="node">04 · LORE</span></div>
-    <div class="content-col reveal">
-      <h2 class="section-title">Teaching &amp; play</h2>
-      <p class="teaching-intro">Long before "enablement" was a job title, I was building curricula. Some of it looked like training. Some of it looked like a game. All of it was the same problem: take something complicated and structure it so a room full of people can actually get through it.</p>
-      <div class="teach-list">
-        <div class="teach-item">
-          <span class="k">IN-PERSON</span>
-          <h4>iFixit repair training</h4>
-          <p>Community device-repair education delivered in person in Chicago and Kenya, plus mentoring junior technicians as the escalation point for complex issues. <a href="https://www.ifixit.com/User/269989/Mike" target="_blank" rel="noopener" style="color:var(--brass-dim);">Old tech-support profile →</a></p>
-        </div>
-        <div class="teach-item">
-          <span class="k">WEEKLY · 10+ YEARS</span>
-          <h4>Community curriculum</h4>
-          <p>Structured, discussion-based lessons for an adult community group — researched and written from scratch, every week, for over a decade.</p>
-        </div>
-        <div class="teach-item">
-          <span class="k">25+ PARTICIPANTS</span>
-          <h4>Mystery parties</h4>
-          <p>Multi-act mystery experiences with layered mechanics, real facilitator logistics, and a room full of people who have to actually solve it together.</p>
-        </div>
-        <div class="teach-item">
-          <span class="k">MULTI-YEAR</span>
-          <h4>D&amp;D campaigns</h4>
-          <p>Long-running, layered campaigns designed and run over years — world-building as systems design, one session at a time.</p>
-          <div class="dice-row">
-            <button class="dice-btn" id="d20btn" aria-label="Roll a d20">d20</button>
-            <span class="dice-result" id="d20result"></span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- NOTES -->
-<section class="track-section" id="notes">
-  <div class="spine-col"><span class="node">05 · SYS/LORE</span></div>
-  <div class="content-col reveal">
-    <h2 class="section-title">Field notes</h2>
-        <p class="notes-body">A few notes from the AI-building side of things — pulled from a long-running D&amp;D campaign I use as a sandbox for prompt design and structured generation.</p>
-    <div class="card-grid">
-      <div class="card">
-        <div class="tag">PROMPT DESIGN</div>
-        <h3>Turning a ruleset into a prompt</h3>
-        <p>Built a simplified 5-skill, D6-based tabletop system for playing with my kids, then wrote a single structured prompt that gets an AI to generate consistent characters, monsters, and encounters on the fly — the same pattern that makes AI useful for real business workflows: clear rules in, consistent output out.</p>
-      </div>
-      <div class="card">
-        <div class="tag">WORLDBUILDING</div>
-        <h3>Running a multiverse as a solo DM</h3>
-                <p>A time-travel campaign spanning a dozen worlds — from Arrakis to Middle-earth to a TARDIS-piloted multiverse hub — built session by session with AI as a collaborator. Plot hooks, NPCs, stat blocks, and encounter pacing get drafted, reviewed, and revised before every game night, including a running thread where characters run into their own future selves.</p>
-      </div>
-      <div class="card">
-        <div class="tag">E-COMMERCE</div> <h3>Building my wife's art business online</h3> <p>Building the Shopify storefront for my wife's art business from the ground up — site setup, product uploads, SEO, and social marketing — the same skill set I bring to client work, just applied a little closer to home.</p> </div> <div class="card"> <div class="tag">AUTOMATION</div> <h3>Turning Claude sessions into a running build log</h3> <p>Wired up an automated pipeline that logs what I'm building in Obsidian and drafts updates for this very section — this card is one of its first outputs.</p> </div> </div> <a class="mailto-link" href="mailto:sam@samdyatt.com?subject=Field%20Notes%20follow-up">Ask me about it →</a>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="wrap contact-inner">
-    <div class="contact-flex">
-      <img src="data:image/jpeg;base64,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" alt="Sam Dyatt" class="contact-photo">
-      <div>
-        <h2 class="contact-title">Say hello.</h2>
-        <p class="contact-sub">Based in the Austin, TX area — open to remote, or on-site work nearby. Also now running hands-on AI and automation workshops for small businesses around Leander and greater Austin, and available for public speaking on systems, automation, and teaching technical skills.</p>
-        <div class="contact-links">
-          <a href="mailto:sam@samdyatt.com">sam@samdyatt.com</a>
-          <a href="https://www.linkedin.com/in/sam-dyatt" target="_blank" rel="noopener">linkedin.com/in/sam-dyatt</a>
-          <a href="#" data-cal-link="sam.dyatt/free-15-minute-intro-call" data-cal-namespace="free-15-minute-intro-call" data-cal-config='{"layout":"month_view"}'>Book a free 15-min call &#8594;</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="wrap">
-    <footer>
-      <p title="Handwritten, over-engineered, and re-read for typos more times than is healthy.">Built by hand. No template.</p>
-      <p>© 2026 Sam Dyatt</p>
-    </footer>
-  </div>
-</section>
-
-<div class="konami-toast" id="konamiToast">[SYSTEM LOG] Sequence verified. Rolling initiative for the whole page — nat 20 across the board.</div>
-
-<script>
-  const toggle = document.getElementById('navToggle');
-  const links = document.getElementById('navLinks');
-  toggle.addEventListener('click', () => {
-    const open = links.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', open);
-  });
-  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    links.classList.remove('open');
-    toggle.setAttribute('aria-expanded', 'false');
-  }));
-
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!prefersReduced && 'IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('in');
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-  } else {
-    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header"><nav class="wrap nav" aria-label="Main navigation">
+    <a class="brand" href="#top" aria-label="Sam Dyatt Systems home"><svg class="mark" viewBox="0 0 48 48" aria-hidden="true"><path fill="#102631" d="M3 3h42v42H3z"/><path fill="none" stroke="#e8873d" stroke-width="2" d="M10 9h28v30H10z"/><text x="9" y="32" fill="#fffefa" font-family="Newsreader, Georgia, serif" font-size="25" font-weight="600">S</text><text x="25" y="32" fill="#e8873d" font-family="Newsreader, Georgia, serif" font-size="25" font-weight="600">D</text></svg><span>SAM DYATT<small>SYSTEMS</small></span></a>
+    <button class="menu" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <ul class="nav-links"><li><a href="#services">Services &amp; pricing</a></li><li><a href="#toast">Toast POS</a></li><li><a href="#proof">Proof</a></li><li><a href="#about">About</a></li><li><a href="#faq">FAQ</a></li><li><a class="nav-cta" href="https://cal.com/samdyatt/audit" target="_blank" rel="noopener">Book the audit ↗</a></li></ul>
+  </nav></header>
+  <main id="main">
+    <section class="hero" id="top"><div class="wrap"><span class="eyebrow">Technology consulting · Leander &amp; Austin, TX</span><h1>Business technology<br>that <em>holds together.</em></h1><p class="hero-copy">Network to AI, nothing outsourced to a second vendor. One person who can secure your network, run your systems, set up your POS, and make AI actually useful — backed by a straight guarantee.</p><div class="hero-actions"><a class="button primary" href="https://cal.com/samdyatt/audit" target="_blank" rel="noopener">Book the Systems &amp; Security Audit — $1,200 <span>↗</span></a><a class="button outline" href="#services">See all pricing</a></div><div class="hero-notes"><div class="hero-stat"><b>$1,200</b><span>Flat-fee audit, guaranteed</span></div><div class="hero-stat"><b>3 days</b><span>Written findings turnaround</span></div><div class="hero-stat"><b>$85</b><span>20-min quick-fix call</span></div></div><p class="corner-note">A local systems partner for businesses that need things to work — and stay working.</p></div></section>
+    <div class="stack"><div class="wrap"><p class="stack-label">The stack I actually run, every day</p><div class="pills"><span class="pill">FortiGate</span><span class="pill">SonicWall</span><span class="pill">Ruckus</span><span class="pill">Meraki</span><span class="pill">Duo</span><span class="pill">Active Directory</span><span class="pill">Windows Server</span><span class="pill">Microsoft 365</span><span class="pill">Google Workspace</span><span class="pill">Intune</span><span class="pill">Apple Business Manager</span><span class="pill">AWS WorkSpaces</span><span class="pill">Toast</span><span class="pill">R365</span><span class="pill">Teams</span><span class="pill">Slack</span></div></div></div>
+    <section><div class="wrap"><div class="split-head"><div><span class="eyebrow">Fit check</span><h2>Built for the business between “we’ll figure it out” and a full IT department.</h2></div><p class="lead">A practical technology partner for teams with real systems, real customers, and no patience for opaque vendor speak.</p></div><div class="fit-grid"><article class="fit-card good"><h3>✓ Good fit</h3><ul><li>Leander / Austin-area businesses, 5–75 employees, no full-time IT hire</li><li>Restaurants and hospitality groups running (or considering) Toast</li><li>Professional offices — legal, medical, financial — juggling multiple tech vendors</li><li>Retail and service businesses ready to stop guessing where AI actually helps</li></ul></article><article class="fit-card other"><h3>— Weaker fit</h3><ul><li>Solo operators with no staff or systems to manage — the $85 quick-fix call is a better start</li><li>Businesses already happy with an existing in-house IT team or MSP, with no specific gap</li></ul></article></div></div></section>
+    <section class="process"><div class="wrap"><span class="eyebrow">How it works</span><h2>Three steps. Actual deadlines.</h2><div class="steps"><article class="step"><span class="step-number">01 / DISCOVER</span><h3>60-minute walkthrough</h3><p>On-site or video. We go through your network, systems, devices, POS, and where AI keeps coming up in conversation.</p></article><article class="step"><span class="step-number">02 / ASSESS</span><h3>Written findings in 3 business days</h3><p>A ranked report: security gaps, systems inefficiencies, device/identity cleanup, and specific AI opportunities — each with a real cost estimate.</p></article><article class="step"><span class="step-number">03 / DECIDE</span><h3>30-minute review call</h3><p>We go through the findings together and decide what, if anything, gets fixed first.</p></article></div><div class="guarantee"><div class="seal">✓</div><div><h3>The guarantee</h3><p>If the audit doesn't identify at least 3 concrete, fixable issues or 5+ hours a week you can win back, you don't pay. No fine print.</p></div></div><p class="fine">Booking runs through Cal.com. Paid work is invoiced directly through Novo — no card required to book.</p></div></section>
+    <section id="services"><div class="wrap"><div class="service-intro"><span class="eyebrow">Services &amp; pricing</span><h2>Real prices. No “contact for quote.”</h2><p class="lead">Start with the audit, or the quick-fix call if you already know what's broken. Everything below scales up from there.</p></div><p class="pricing-label">Tier 1 / Flagship</p><div class="flagship"><div><h3>Small Business Systems &amp; Security Audit</h3><div class="price">$1,200 <small>flat (up to $1,800 for multi-location or 50+ device environments)</small></div><ul class="feature-list"><li>Full review across network, identity, devices, POS, and AI opportunity</li><li>Ranked, written report — not a slide deck</li><li>Guaranteed to find at least 3 fixable issues or 5+ hrs/week, or it's free</li></ul><a class="button dark" href="https://cal.com/samdyatt/audit" target="_blank" rel="noopener">Book the audit ↗</a></div><aside class="quick" aria-label="Quick-fix call pricing"><h4>Just one question?</h4><div class="amt">$85</div><p>20-minute paid quick-fix call — no audit required.</p><a class="button dark" href="https://cal.com/samdyatt/quick-fix" target="_blank" rel="noopener">Book quick-fix call</a></aside></div><p class="pricing-label">Tier 2 / Implementation</p><div class="grid4"><article class="service-card"><h3>Network &amp; Security Setup</h3><span class="amt">$1,800–$4,500</span><p>Firewall deployment and hardening, Wi-Fi rollout, MFA setup. Hardware billed separately.</p></article><article class="service-card"><h3>Identity &amp; Device Rollout</h3><span class="amt">$1,800–$4,500</span><p>AD/Intune or Apple Business Manager setup, Microsoft 365 or Google Workspace migration, zero-touch provisioning.</p></article><article class="service-card"><h3>Toast POS Project</h3><span class="amt">$1,800–$4,500</span><p>Setup, legacy-system migration, or optimization — menu build, staff training, go-live support.</p></article><article class="service-card"><h3>AI &amp; Automation Training</h3><span class="amt">$1,200–$8,000</span><p>Half-day workshop through a multi-session team program, built around your real workflows.</p></article></div><p class="pricing-label">Tier 3 / Ongoing retainers</p><div class="grid3"><article class="service-card"><h3>Full-Stack Tech Advisor</h3><span class="amt">$900–$2,000 / mo</span><p>Monthly check-in, priority access, quarterly review across every pillar, capped ad-hoc hours.</p></article><article class="service-card"><h3>Managed Security Check-in</h3><span class="amt">$400–$900 / mo</span><p>Firewall and Wi-Fi health checks, patch and firmware review, identity/MFA audits.</p></article><article class="service-card"><h3>Toast Ongoing Support</h3><span class="amt">$300–$750 / mo</span><p>Per location. Menu updates, reporting reviews, integration troubleshooting.</p></article></div></div></section>
+    <section class="toast-section" id="toast"><div class="wrap"><div class="toast-card"><div><span class="eyebrow">Named specialty</span><h2>Toast POS, done right the first time.</h2><p>I've worked hands-on with Toast — implementation, migration, and untangling systems that were fighting the staff instead of helping them. If your POS is the thing everyone complains about, that's exactly what this fixes.</p><a class="button primary" href="mailto:sam@samdyatt.com?subject=Toast%20POS%20inquiry">Ask about your Toast setup ↗</a></div><ul><li>Menu builds that match how your kitchen or floor actually runs</li><li>Migration from legacy POS with reporting parity, not a fresh start from zero</li><li>Staff training that sticks past week one</li><li>Integration troubleshooting — loyalty, online ordering, payroll, R365</li></ul></div></div></section>
+    <section id="proof"><div class="wrap"><span class="eyebrow">Proof</span><h2>Systems I've shipped.</h2><div class="proof-grid"><article class="proof-card"><span class="org">Easy Tiger · 2021</span><h3>M365 consolidation analysis</h3><p>Built the cost-benefit case comparing existing SaaS/licensing spend against a consolidated Microsoft 365 rollout across 100+ users. The analysis became the migration.</p></article><article class="proof-card"><span class="org">Easy Tiger · 2021–2022</span><h3>Zero-touch deployment</h3><p>Rolled out Apple Business Manager synced with Intune so new hardware provisioned itself — no manual imaging, no bottleneck at onboarding.</p></article><article class="proof-card"><span class="org">Better Business Bureau · 2018–2020</span><h3>Automated onboarding</h3><p>Replaced manual on/off-boarding steps with PowerShell, then rolled the process out organization-wide.</p></article><article class="proof-card"><span class="org">AMBA · 2020</span><h3>Zendesk ticketing overhaul</h3><p>Engineered a streamlined Zendesk ticketing system that cut support costs and sped up resolution times during a six-month engagement.</p></article></div></div></section>
+    <section class="about-section" id="about"><div class="wrap"><span class="eyebrow">About</span><div class="about"><div><h2>Why this, why me.</h2><p>Fifteen years in IT — from individual device repair to running systems for a hundred-plus person company, to supporting law firms that can't afford a dropped ball. Somewhere in there, the instinct kept showing up: when something worked, I wanted to know if I could teach someone else to run it too.</p><p>That's the actual difference here. A lot of technology help either fixes the thing and leaves, or explains it in a way nobody remembers a week later. I've spent over a decade building curricula and training programs — the fix and the explanation come from the same person, and it's built to stick.</p></div><aside class="aside" aria-label="Personal note"><p><strong>Off the clock:</strong> building small tools with AI, and running a long-running D&amp;D campaign — the same instinct for turning something complicated into a system a room full of people can actually get through, just applied to a game instead of a business.</p><p><a href="https://www.linkedin.com/in/sam-dyatt">Full background on LinkedIn →</a></p></aside></div></div></section>
+    <section id="faq"><div class="wrap faq"><span class="eyebrow">FAQ</span><h2>Before you ask.</h2><div class="faq-item"><h3>How is this different from a managed IT provider?</h3><p>Most MSPs price by seat and don't touch POS systems or AI. This covers the network, the systems, the POS, and the AI layer under one flat-fee audit — no per-seat contract required to start.</p></div><div class="faq-item"><h3>How is this different from an AI consultant?</h3><p>AI recommendations are worthless if the network is unreliable or the systems underneath are a mess. The audit looks at the whole stack first, then places AI where it actually fits — not as the whole pitch.</p></div><div class="faq-item"><h3>What if I only need one thing fixed?</h3><p>Start with the $85 quick-fix call. If it's bigger than 20 minutes can solve, it gets scoped as a project from there.</p></div><div class="faq-item"><h3>Do you offer free consultations?</h3><p>A short call to confirm fit, yes. Diagnosing or solving a real problem is what the paid audit and quick-fix calls are for — that's by design, so the time going into your business is time you're paying for, not whatever's left over.</p></div></div></section>
+    <section class="contact" id="contact"><div class="wrap"><span class="eyebrow">Say hello</span><h2>Based in the Austin, TX area. Working with Leander and greater Austin.</h2><p class="lead">Open to remote or on-site work nearby. Also available for speaking on systems, automation, and teaching technical skills.</p><div class="hero-actions"><a class="button dark" href="https://cal.com/samdyatt/audit" target="_blank" rel="noopener">Book the audit — $1,200 ↗</a><a class="button dark" href="mailto:sam@samdyatt.com?subject=Question%20for%20Sam">Just have a question</a></div><div class="contact-links"><a href="mailto:sam@samdyatt.com">sam@samdyatt.com</a><a href="https://www.linkedin.com/in/sam-dyatt">linkedin.com/in/sam-dyatt</a></div></div></section>
+  </main><footer><div class="wrap">Built by hand. No template. &copy; 2026 Sam Dyatt</div></footer>
+  <script>const button=document.querySelector('.menu'),links=document.querySelector('.nav-links');button.addEventListener('click',()=>{const isOpen=links.classList.toggle('open');button.setAttribute('aria-expanded',isOpen)});links.addEventListener('click',e=>{if(e.target.tagName==='A'){links.classList.remove('open');button.setAttribute('aria-expanded','false')}});</script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Sam Dyatt Systems",
+    "url": "https://samdyatt.com/",
+    "email": "sam@samdyatt.com",
+    "description": "Technology consulting for small businesses — network and security, systems and identity management, Toast POS, and AI and automation.",
+    "areaServed": [
+      { "@type": "City", "name": "Leander, TX" },
+      { "@type": "City", "name": "Austin, TX" },
+      { "@type": "City", "name": "Cedar Park, TX" }
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Austin",
+      "addressRegion": "TX",
+      "addressCountry": "US"
+    },
+    "priceRange": "$85-$8000",
+    "sameAs": ["https://www.linkedin.com/in/sam-dyatt"],
+    "makesOffer": [
+      { "@type": "Offer", "name": "Small Business Systems & Security Audit", "price": "1200", "priceCurrency": "USD" },
+      { "@type": "Offer", "name": "20-Minute Quick-Fix Call", "price": "85", "priceCurrency": "USD" },
+      { "@type": "Offer", "name": "Toast POS Setup, Migration & Support" },
+      { "@type": "Offer", "name": "AI & Automation Training" }
+    ]
   }
-
-  // d20 roller
-  const d20btn = document.getElementById('d20btn');
-  const d20result = document.getElementById('d20result');
-  if (d20btn) {
-    d20btn.addEventListener('click', () => {
-      let ticks = 0;
-      const spin = setInterval(() => {
-        d20result.textContent = Math.ceil(Math.random() * 20);
-        ticks++;
-        if (ticks > 8) {
-          clearInterval(spin);
-          const final = Math.ceil(Math.random() * 20);
-          let suffix = '';
-          if (final === 20) suffix = ' — critical hit';
-          if (final === 1) suffix = ' — critical fail';
-          d20result.textContent = final + suffix;
-        }
-      }, 70);
-    });
-  }
-
-  // dice rain — konami reward
-  function spawnDiceRain() {
-    const count = 26;
-    for (let i = 0; i < count; i++) {
-      const die = document.createElement('div');
-      die.className = 'dice-rain-die';
-      die.textContent = Math.ceil(Math.random() * 20);
-      const left = Math.random() * 96;
-      const duration = 2200 + Math.random() * 1400;
-      const delay = Math.random() * 500;
-      die.style.left = left + 'vw';
-      die.style.animationDuration = duration + 'ms';
-      die.style.animationDelay = delay + 'ms';
-      document.body.appendChild(die);
-      setTimeout(() => die.remove(), duration + delay + 250);
-    }
-  }
-
-  // konami code
-  const konami = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','KeyB','KeyA'];
-  let kIndex = 0;
-  document.addEventListener('keydown', (e) => {
-    if (e.code === konami[kIndex]) {
-      kIndex++;
-      if (kIndex === konami.length) {
-        if (!prefersReduced) spawnDiceRain();
-        const t = document.getElementById('konamiToast');
-        if (t) {
-          t.classList.add('show');
-          setTimeout(() => t.classList.remove('show'), 3200);
-        }
-        kIndex = 0;
-      }
-    } else {
-      kIndex = (e.code === konami[0]) ? 1 : 0;
-    }
-  });
-</script>
-
-  <script type="text/javascript">
-      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-      Cal("init", "free-15-minute-intro-call", {origin:"https://app.cal.com"});
-      Cal.ns["free-15-minute-intro-call"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
   </script>
-
 </body>
 </html>
