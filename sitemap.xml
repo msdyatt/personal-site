@@ -5,4 +5,12 @@
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
+  <url>
+    <loc>https://samdyatt.com/theguide/</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://samdyatt.com/theguide/privacy/</loc>
+    <changefreq>yearly</changefreq>
+  </url>
 </urlset>
